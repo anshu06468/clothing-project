@@ -4,13 +4,13 @@ import { MatSidenav } from '@angular/material';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'] 
 })
 export class AppComponent {
   @ViewChild('drawer', {static: false}) drawer: MatSidenav;
   title = 'e-comm';
   
-  toggelNavbar () {
+  toggelNavbar (event) {
     this.drawer.toggle();
   }
 
