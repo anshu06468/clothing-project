@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   });
+  email:string
+  password:string
+  btnDisabled:true
   constructor(public dialogRef: MatDialogRef<LoginComponent>, private router: Router, public dialog: MatDialog,
     private loginService: LoginService) { }
 
