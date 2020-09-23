@@ -42,8 +42,8 @@ default = new Array(4);
   ngOnInit() {
   }
 
-  productHome(id:number,category:string) {
-    this.router.navigate(['product/'+id,category]);
+  productHome(category:string) {
+    this.router.navigate(['product/'+category]);
     }
 
 } 

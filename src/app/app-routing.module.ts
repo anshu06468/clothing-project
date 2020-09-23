@@ -20,7 +20,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'product/:id/:category',
+    path: 'product/:category',
     component: ProductsComponent
   },
   {

@@ -31,7 +31,7 @@
       <div class="cards">
         <mat-card
           class="example-card onLoad"
-          (click)="productHome(id,item.title)"
+          (click)="productHome(item.title)"
           *ngFor="let item  of data; let id = index"
           [ngStyle]="{ 'background-image': 'url(' + item.imageUrl + ')'}"
         >
