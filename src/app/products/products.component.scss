@@ -1,0 +1,137 @@
+.poster{
+    position: relative; 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 450px;
+}
+
+.poster:before{
+    background: url(https://res.cloudinary.com/div44owu1/image/upload/v1600703368/shbqvxbcyua4pdeqjgfo.webp);
+    background-position-y: center;
+    content: "";
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.6;
+}
+
+.poster .text{
+    position: relative;
+    color: #ffffff;  
+    font-size: 35px;
+    line-height: 0.9;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .poster{
+        height: 186px !important;
+    }
+    
+    .poster:before{
+        top:0px !important
+    }
+    
+    .body .cards{
+        padding: 0px !important;
+    }
+    
+    .example-card{
+        padding: 0px;
+        width: 140px !important;
+        background: #f0efef;
+    }
+    
+    .body .productImg {
+        height: 152px !important;
+        margin: 10px !important;
+        width: 120px;
+    }
+
+
+  
+  }
+
+.headbar{
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid;
+}
+
+.nproducts p{
+    margin:0px
+}
+
+
+.headbar .srtby{
+    display: flex;
+    font-size: 14px;
+}
+
+.srty .list{
+    list-style: none; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0; 
+}
+
+.list {
+    margin:0px;
+    padding: 0px;
+}
+
+.list li{
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px 20px; 
+    transition: all 0.3s ease 0s;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.list .contain:hover {
+    text-decoration: underline;
+}
+
+.srtby .list span{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.list .contain:focus {
+    outline: none;
+}
+
+
+.category-img{
+    height: 10px;
+    width: 10px;
+    margin-left: 5px;
+}
+
+.body {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .body .productImg {
+    height: 260px;
+  }
+  
+  .body .cards {
+    width: 100%;
+    display: flex;
+    padding: 0px 165px;
+    flex-flow: wrap;
+    justify-content: center;
+  }
