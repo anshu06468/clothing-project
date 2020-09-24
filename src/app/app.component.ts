@@ -7,7 +7,7 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./app.component.scss'] 
 })
 export class AppComponent {
-  @ViewChild('drawer', {static: false}) drawer: MatSidenav;
+  @ViewChild('drawer') drawer: MatSidenav;
   title = 'e-comm';
   
   toggelNavbar (event) {
