@@ -88,6 +88,18 @@ a:hover{
     background: #f5faff;
   }
 
+  .ngxImageZoomContainer > img{
+      height: 750px !important;
+      width: 500px !important; 
+  }
+
+  @media (max-width: 640px) {
+    .ngxImageZoomContainer > img {
+    height: 350px !important;
+    width: 300px !important;
+    }      
+}
+
 
   mat-card {
       box-shadow: none !important;
@@ -256,3 +268,5 @@ button{
 .pointer{
     cursor: pointer;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

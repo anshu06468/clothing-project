@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../login/login.component';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../interfaces/Ilogin';

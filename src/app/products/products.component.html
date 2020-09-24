@@ -60,6 +60,7 @@
       <mat-card
         class="example-card onLoad"
         *ngFor="let item  of data;"
+        (click)="singleNavigate(item)"
       >
       <div>
         <img src="{{ item.defaultimage }}" class="productImg" mat-card-image />

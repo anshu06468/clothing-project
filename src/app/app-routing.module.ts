@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
-import { SingleProductComponent } from './single-product/single-product.component';
+import { SingleProductComponent } from './products/single-product/single-product.component';
 import { ShoppingCartComponent } from './myprofile/shopping-cart/shopping-cart.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ProfileInformationComponent } from './myprofile/profile-information/profile-information.component';
@@ -24,13 +24,14 @@ const routes: Routes = [
     component: ProductsComponent
   },
   {
-    path:'product/:category/:id',
+    path:'product/:category/:name',
     component: SingleProductComponent
   },
   {
     path: 'shopping-cart',
     component: ShoppingCartComponent
   },
+
   {
     path: 'myprofile',
     component: MyprofileComponent,

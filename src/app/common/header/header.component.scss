@@ -171,6 +171,16 @@
     }
 }
 
+@media (max-width:640px){
+    .header-container {
+        height: 57px;
+    }
+
+    .logo img {
+        height: 50px;
+        width: 77px;
+    }
+}
 
 .example-container {
   width: 400px;

@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/rou
 import { ProductService } from '../services/product.service';
 import { filter, startWith, takeUntil } from 'rxjs/operators'
 import { Subject } from 'rxjs';
+import { relative } from 'path';
 
 @Component({
   selector: 'app-products',
@@ -45,6 +46,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.destroyed.next();
     this.destroyed.complete();
     console.log("destroyed")
+  }
+
+  singleNavigate(item){
+    this.router.navigate([item.name],{relativeTo: this.route})
   }
 
 

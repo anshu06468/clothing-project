@@ -1,0 +1,19 @@
+<div class="main">
+    <div class="left-side">
+        <div class="main-photo">
+            
+            <lib-ngx-image-zoom
+            [thumbImage]="myThumbnail"
+            [magnification]="1.2"
+            >
+            
+            </lib-ngx-image-zoom>
+        </div>
+        <div class="photo-list">
+            <div class="small-box" *ngFor="let i of [1,2,3,4,5,6]">
+                <img src="https://res.cloudinary.com/div44owu1/image/upload/v1600703368/shbqvxbcyua4pdeqjgfo.webp">
+            </div>
+        </div>
+    </div>
+    <div class="right-side">    </div>
+</div>

@@ -1,0 +1,48 @@
+.main{
+    display: flex;
+    // height: 600px;
+}
+
+.main .left-side{
+    flex:1.3;
+//     background-color: red;
+}
+
+.main .right-side{
+    flex:1;
+}
+
+.main-photo{
+    height: fit-content;
+    flex-direction: column;
+    display: flex;
+    align-items: flex-end;
+}
+
+.photo-list{
+    display: flex;
+    align-items: center;
+    margin:15px;
+    padding:15px;
+    justify-content: flex-end;
+}
+
+.photo-list .small-box img{
+    height: 150px;
+    padding:10px;
+    cursor: pointer;
+    
+}
+
+@media (max-width: 640px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .main-photo {
+        flex-direction: row; 
+        justify-content: center;
+    }
+}
+
+
