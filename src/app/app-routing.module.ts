@@ -13,6 +13,7 @@ import { WishlistComponent } from './myprofile/wishlist/wishlist.component';
 import { MyRewardsComponent } from './myprofile/my-rewards/my-rewards.component';
 import { NotificationsComponent } from './myprofile/notifications/notifications.component';
 import {AuthService } from './services/auth-service';
+import { ProductResolverService } from './products/product-resolver.service';
 
 const routes: Routes = [
   {
@@ -24,8 +25,9 @@ const routes: Routes = [
     component: ProductsComponent
   },
   {
-    path:'product/:category/:name',
-    component: SingleProductComponent
+    path:'product/:category/:name/:id',
+    component: SingleProductComponent,
+    resolve: [ProductResolverService]
   },
   {
     path: 'shopping-cart',

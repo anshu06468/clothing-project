@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { timeout, delay } from 'q';
-import { Observable, of } from 'rxjs';
-import { LoadingService } from './loading.service';
+import { Injectable, Injector } from '@angular/core';
+import { Observable} from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { ProductsService } from '../products/products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProductService {
 
   api = "https://testshopiy.herokuapp.com";
-  constructor(private loadingService: LoadingService, private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private injector:Injector) { }
 
 
   getAllProducts(): Observable<any> {
@@ -29,5 +29,15 @@ export class ProductService {
   getCategoryProducts(category: string): Observable<any> {
     // console.log(this.api+"/getProduct?category="+encodeURI(category))
     return this.httpClient.get(this.api+"/getProduct?category="+encodeURI(category));
+  }
+
+  getProductById(id){
+    return this.httpClient.get(this.api+"/getProductByID/"+id).pipe(
+      tap(data=>{
+        console.log(data)
+        const prod = this.injector.get(ProductsService)
+        prod.setProduct(data);
+      })
+    );
   }
 }

@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { filter, startWith, takeUntil } from 'rxjs/operators'
 import { Subject } from 'rxjs';
 import { relative } from 'path';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   data: []
   default = new Array(4);
 
-  constructor(private router: Router, private productService: ProductService, private route: ActivatedRoute,) { }
+  constructor(private router: Router, private productService: ProductService, private route: ActivatedRoute,private productS:ProductsService) { }
 
   public destroyed = new Subject<any>();
   
@@ -49,7 +50,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   singleNavigate(item){
-    this.router.navigate([item.name],{relativeTo: this.route})
+    this.productService.getProductById(item._id).subscribe(()=>{
+      this.router.navigate([item.name,item._id],{relativeTo: this.route})
+    });
   }
 
 

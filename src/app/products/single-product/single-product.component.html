@@ -1,19 +1,39 @@
-<div class="main">
+<div class="container main">
     <div class="left-side">
         <div class="main-photo">
             
             <lib-ngx-image-zoom
-            [thumbImage]="myThumbnail"
+            [thumbImage]="product.defaultimage"
+            [fullImage]="product.defaultImage"
             [magnification]="1.2"
             >
-            
             </lib-ngx-image-zoom>
         </div>
-        <div class="photo-list">
-            <div class="small-box" *ngFor="let i of [1,2,3,4,5,6]">
+        <div class="photo-list" #pht >
+            <div #smlb class="small-box" *ngFor="let j of [1,2]; let i = index" (click)="OnSelect(i)">
                 <img src="https://res.cloudinary.com/div44owu1/image/upload/v1600703368/shbqvxbcyua4pdeqjgfo.webp">
             </div>
         </div>
     </div>
-    <div class="right-side">    </div>
+    <div class="right-side">   
+        <div class="sdebx">
+            <h1>{{product.name}}</h1> 
+            <h3>
+                <span style=" text-decoration: line-through;">₹{{product.defaultprice}}.00</span>
+                <span style="padding-left: 15px; color:goldenrod">₹{{product.price}}.00  Sale</span>
+            </h3>   
+            <h6>Tax Included.</h6>
+            <div class="sizeBuy" style="margin-top:50px">
+                <p>Select Size</p>
+                <select class="form-control form-control-md">
+                    <option>Small (S)</option>
+                    <option>Medium (M)</option>
+                    <option>Large (L)</option>
+                    <option>(XL)</option>
+                </select>
+                <button type="button" class="btn btn-primary btn-lg btn-block mt-4">ADD TO CART</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">BUY IT NOW</button>
+            </div>
+        </div>
+    </div>
 </div>
