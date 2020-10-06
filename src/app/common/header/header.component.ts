@@ -1,26 +1,29 @@
-import { Component, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../login/login.component';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../interfaces/Ilogin';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MdePopoverTrigger } from '@material-extended/mde';
+import { AuthService } from 'src/app/services/auth-service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy {
 
   category:Array<string>=["Exclusive","Zodiac T-Shirts","Couple","Regional","Music","Psychedelic","Yoga","TV & Camera","Personalized Template","Travel"]
 
   loadingEnable: boolean;
   sidenavEnable = false;
-  user: User;
+  isAuthenticated=false;
+  user:User;
+  private userSub:Subscription;
 
   
   @ViewChildren(MdePopoverTrigger) trigger: QueryList<MdePopoverTrigger>;
@@ -32,17 +35,17 @@ export class HeaderComponent implements OnInit {
     this.sidenav.emit('toggel');
   }
 
-  constructor(public dialog: MatDialog, private router: Router, 
-    public loginService: LoginService,
-    public loadingService: LoadingService) { }
+  constructor(public dialog: MatDialog, private router: Router, private loadingService:LoadingService,
+    private authService: AuthService) { }
 
   
-
-
   ngOnInit() {
-    this.loginService.loggedIn.subscribe(next => {
-      this.user = next;
-    });
+    this.userSub=this.authService.user.subscribe(user=>{
+      this.isAuthenticated=!!user;//trick !user?false:true
+      this.user=user;
+    })
+
+    this.authService.autoLogin();
     this.loadingService.progressEnable.subscribe(next => {
       this.loadingEnable = next;
     });
@@ -67,13 +70,10 @@ export class HeaderComponent implements OnInit {
     });
   }
   logout() {
-    this.user = null;
-
-    this.loginService.loggedIn.next(this.user);
-    this.router.navigate(['home']);
+    this.authService.logOut()
   }
   closeCartPopover() {
-    if (this.user) {
+    if (this.isAuthenticated) {
       this.trigger.toArray()[3].togglePopover();
     } else {
       this.trigger.toArray()[2].togglePopover();
@@ -83,4 +83,8 @@ export class HeaderComponent implements OnInit {
   productHome(category) {
     this.router.navigate(['product/'+category]);
     }
+
+  ngOnDestroy(){
+    this.userSub.unsubscribe();
+  }
 }

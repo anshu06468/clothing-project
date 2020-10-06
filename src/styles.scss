@@ -173,6 +173,7 @@ a:hover{
   }
   .onLoad
   {
+      opacity: 0.6;
       -webkit-animation:bounceIn 2s;
   }
   .fadeIn{
@@ -263,6 +264,14 @@ button{
 }
 .mat-select-value{
     text-align: center !important;
+}
+
+.mat-dialog-container{
+    width: 370px !important;
+}
+
+owl-carousel-child{
+    margin-left:0px !important;
 }
 
 .pointer{

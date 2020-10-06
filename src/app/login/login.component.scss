@@ -10,6 +10,8 @@
   box-shadow: none;
 }
 .divison{
+  display:flex;  
+  margin-bottom: 30px;
   float: none;
   margin: 20px 0;
   overflow: hidden;
@@ -23,4 +25,17 @@
   width: 100%;
   position: relative;
   top:14px;
+}
+
+.btm-btn{
+  display:flex; 
+  justify-content: space-between;
+}
+
+@media (max-width: 640px) {
+  .btn {
+    font-size: 14px;
+  }
+
+
 }

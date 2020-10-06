@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/interfaces/Ilogin';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/login/login.component';
+import { AuthService } from 'src/app/services/auth-service';
 
 @Component({
   selector: 'app-sidenav',
@@ -14,6 +15,7 @@ export class SidenavComponent implements OnInit {
 
   @Output()
   sidenav = new EventEmitter();
+  isAuthenticated:boolean=false;
 
   profileMenu = [
     {
@@ -63,14 +65,16 @@ export class SidenavComponent implements OnInit {
   toggelSidenav() {
     this.sidenav.emit('toggel');
   }
-  constructor(public dialog: MatDialog, private router: Router, public loginService: LoginService) {
+  constructor(public dialog: MatDialog, private router: Router, public authService: AuthService) {
 
   }
 
   user:User;
   ngOnInit() {
-    this.loginService.loggedIn.subscribe(next => {
-      this.user = next;
+    this.authService.user.subscribe(user => {
+      this.isAuthenticated=!!user
+      this.user = user;
+      // console.log(user)
     });
   }
   goToMyProfile(){
@@ -80,7 +84,7 @@ export class SidenavComponent implements OnInit {
   logout() {
     this.toggelSidenav();
     this.user = null;
-    this.loginService.loggedIn.next(this.user);
+    this.authService.logOut();
     this.router.navigate(['home']);
   }
   openLoginDialog(): void {

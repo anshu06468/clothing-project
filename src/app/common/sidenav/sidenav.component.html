@@ -1,23 +1,36 @@
-<table *ngIf="!user">
-        <tr (click)="goToMyProfile()">
+<table *ngIf="isAuthenticated">
+        <tr>
                 <td>
                         <img src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/profile-pic-male_2fd3e8.svg" />
 
                 </td>
                 <td style="padding-left: 15px;">
                         <span>Hello,</span>
-                        <h3 style="margin: 0">USER</h3>
+                        <h3 style="margin: 0">{{user.firstName | uppercase}}</h3>
                 </td>
                 <td>
                         <mat-icon fontSet="material-icons-outlined">chevron_right</mat-icon>
                 </td>
         </tr>
 </table>
-<div class="login" *ngIf="user">
+<!-- <div class="login" *ngIf="!isAuthenticated">
+        
         <button mat-stroked-button color="primary" class="button" (click)="openLoginDialog()">LOGIN</button>
-</div>
+</div> -->
 
 <ul class="list">
+
+        <li class="contain" *ngIf="!isAuthenticated">
+                <table>
+                        <tr>
+                                <td>
+                                        <mat-icon fontSet="material-icons-outlined">login</mat-icon>
+                                </td>
+                                <td style="vertical-align: baseline;" (click)="openLoginDialog()"><span style="margin-left: 10px;">LOGIN</span></td>
+                        </tr>
+                </table>
+                <hr style="border-top: 1px solid black; ">
+        </li>
         <li class="contain" (click)="toggelSidenav()" [routerLink]="['/home']" routerLinkActive="active">
                 <table>
                         <tr>
@@ -40,7 +53,7 @@
                 </table>
         </li>
 </ul>
-<ul class="list" *ngIf="user">
+<ul class="list" *ngIf="isAuthenticated">
         <li *ngFor="let item of profileMenu" [routerLink]="[item.link]" routerLinkActive="active"
                 (click)="toggelSidenav()">
                 <table>
@@ -55,7 +68,7 @@
                 </table>
         </li>
 </ul>
-<ul class="list" *ngIf="user">
+<ul class="list" *ngIf="isAuthenticated">
         <li *ngFor="let item of myStuff" [routerLink]="[item.link]" routerLinkActive="active" (click)="toggelSidenav()">
                 <table>
                         <tr>
@@ -69,7 +82,7 @@
                 </table>
         </li>
 </ul>
-<div *ngIf="user">
+<div *ngIf="isAuthenticated">
         <table>
                 <tr (click)="logout()">
                         <td>

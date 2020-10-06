@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/login/login.component';
+import { authReturnData, AuthService } from 'src/app/services/auth-service';
 
 @Component({
   selector: 'app-signup',
@@ -10,15 +12,48 @@ import { LoginComponent } from 'src/app/login/login.component';
 })
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    mobileNumber: new FormControl(''),
-    password: new FormControl('')
+    Fname: new FormControl('',[Validators.required]),
+    Lname: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required]),
+    cpassword: new FormControl('',[Validators.required])
   });
-  constructor(public dialogRef: MatDialogRef<SignupComponent>, public dialog: MatDialog) { }
+  constructor(public dialogRef: MatDialogRef<SignupComponent>, public dialog: MatDialog,private authService:AuthService) { }
+
+  error:string =null;
 
   ngOnInit() {
   }
+
+  OnSignUp(){
+    if(!this.signupForm.valid){
+      return;
+    }
+    const fname=this.signupForm.value.Fname;
+    const lname = this.signupForm.value.Lname;
+    const email=this.signupForm.value.email;
+    const password=this.signupForm.value.password;
+    const cpassword=this.signupForm.value.cpassword;
+    if(cpassword!==password){
+      this.error="Password donot matched"
+      return;
+    }
+    let authObs:Observable<authReturnData>;
+    // console.log(form.value);
+    authObs=this.authService.signUp(email,fname,lname,password)
+    authObs.subscribe(
+      response=>{
+       console.log(response)
+       this.onNoClick();
+      },
+      errorMessage=>{
+        this.error=errorMessage
+      }
+    )
+
+  }
+
+
   onLoginClick() {
     this.dialogRef.close();
     setTimeout(() => {
@@ -29,6 +64,10 @@ export class SignupComponent implements OnInit {
         res => console.log(res)
       );
     }, 300);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
