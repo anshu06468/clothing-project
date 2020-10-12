@@ -33,8 +33,17 @@ export class SliderComponent implements OnInit {
   ];
  
   constructor(private homeService: HomeService) { 
-    this.homeService.getBanners().subscribe(res => {
-      this.images = res.data;
+    this.homeService.bannersImages.subscribe(res => {
+      if(res){
+        this.images = res.data;
+        // console.log(res)
+      }
+      else{
+        // console.log("not loaded")
+        setTimeout(() => {
+          this.images=res.data;
+        }, 1000);
+      }
     })
   }
 

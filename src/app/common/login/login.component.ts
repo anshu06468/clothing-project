@@ -1,12 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { LoginService } from '../services/login.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { User } from '../interfaces/Ilogin';
-import { SignupComponent } from '../common/signup/signup.component';
 import { Observable } from 'rxjs';
-import { authReturnData, AuthService } from '../services/auth-service';
+import { User } from 'src/app/interfaces/Ilogin';
+import { SignupComponent } from '../signup/signup.component';
+import { authReturnData, AuthService } from 'src/app/services/auth-service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -25,8 +24,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('',[Validators.required])
   });
   btnDisabled:true
-  constructor(public dialogRef: MatDialogRef<LoginComponent>, private router: Router, public dialog: MatDialog,
-    private authService: AuthService) { }
+  constructor(public dialogRef: MatDialogRef<LoginComponent>, public dialog: MatDialog,
+    private authService: AuthService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
    
@@ -65,6 +64,11 @@ export class LoginComponent implements OnInit {
 
 
   onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  navigatetoResetPass(){
+    this.router.navigate(['reset_password']);
     this.dialogRef.close();
   }
 }

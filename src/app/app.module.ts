@@ -14,7 +14,7 @@ import { SliderComponent } from './common/slider/slider.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { ProductsComponent } from './products/products.component';
 import { SingleProductComponent } from './products/single-product/single-product.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './common/login/login.component';
 import { ShoppingCartComponent } from './myprofile/shopping-cart/shopping-cart.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ProfileInformationComponent } from './myprofile/profile-information/profile-information.component';
@@ -28,7 +28,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxSkltnModule, SkltnConfig } from 'ngx-skltn';
 import { SignupComponent } from './common/signup/signup.component';
 import { MaterialModule } from './material/material.module'
-import { NgxImageZoomModule } from 'ngx-image-zoom'
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { LoadingSpinnerComponent } from './common/loading-spinner/loading-spinner.component';
+import { ForgotPasswordComponent } from './common/forgot-password/forgot-password.component';
+import { ChangepasswordComponent } from './common/changepassword/changepassword.component'
 
 const skltnConfig: SkltnConfig = {
   rectRadius: 10,
@@ -56,7 +59,10 @@ const skltnConfig: SkltnConfig = {
     ReviewsRatingComponent,
     NotificationsComponent,
     WishlistComponent,
-    SignupComponent
+    SignupComponent,
+    LoadingSpinnerComponent,
+    ForgotPasswordComponent,
+    ChangepasswordComponent
   ],
   imports: [
     NgxImageZoomModule,

@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { Observable} from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ProductsService } from '../products/products.service';
@@ -9,13 +9,14 @@ import { ProductsService } from '../products/products.service';
 })
 export class ProductService {
 
+  category = new BehaviorSubject(null);
+
   api = "https://testshopiy.herokuapp.com";
   constructor(private httpClient: HttpClient,private injector:Injector) { }
 
 
   getAllProducts(): Observable<any> {
     return this.httpClient.get(this.api+"/getCategory");
-    
   }
 
   getSimillarProducts(): Observable<any> {

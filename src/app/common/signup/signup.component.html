@@ -60,7 +60,7 @@
         </div>
         <input class="form-control" placeholder="Confirm Password" type="password" formControlName="cpassword">
     </div>
-    <button class="btn btn-block btn-round dark-background white-color" style="margin-top:30px;" (click)='OnSignUp()'>Register</button>
+    <button class="btn btn-block btn-round dark-background white-color" style="margin-top:30px;" (click)='OnSignUp()' [disabled]="!signupForm.valid">Register</button>
     <div class="login">
         <span>Already have an account?</span>
         <span class="btn btn-link cursor" (click)="onLoginClick()">Log in</span>

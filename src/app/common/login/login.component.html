@@ -36,7 +36,7 @@
     <button class="btn btn-block btn-round dark-background white-color" style="margin-top:30px;" (click)="login()"
         [disabled]="btnDisabled">Login</button>
     <div class = "btm-btn">
-        <a class="btn btn-link cursor" style="margin-top:20px; ">Forgot password?</a>
+        <a class="btn btn-link cursor" style="margin-top:20px; " (click)="navigatetoResetPass()">Forgot password?</a>
         <a class="btn btn-link cursor" style="margin-top:20px; " (click)="onSignUpClick()">Sign up</a>
     </div>
 </form>

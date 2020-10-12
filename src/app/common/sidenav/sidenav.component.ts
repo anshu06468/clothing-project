@@ -1,10 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/interfaces/Ilogin';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/login/login.component';
 import { AuthService } from 'src/app/services/auth-service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-sidenav',

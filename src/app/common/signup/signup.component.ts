@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { LoginComponent } from 'src/app/login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { authReturnData, AuthService } from 'src/app/services/auth-service';
 
 @Component({

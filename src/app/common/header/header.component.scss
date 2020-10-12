@@ -61,7 +61,7 @@
 .list li{
     display: inline-block;
     cursor: pointer;
-    margin: 0px 20px; 
+    margin: 0px 14px; 
     transition: all 0.3s ease 0s;
     vertical-align: middle;
     padding: 0;
@@ -98,9 +98,7 @@
 // }
 
 .logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     cursor: pointer;
 }
 
@@ -149,16 +147,13 @@
     }
 
     .list li {
-        margin: 0px 10px;
+        margin: 0px 8px;
     }
 
-    .search{
-        padding-right: 0px;
-    }
   }
   
 
-  @media (max-width: 700px) {
+  @media (max-width: 680px) {
     .contact-box {
           display: none;
     }
@@ -166,8 +161,9 @@
         display: none;
     }
     .mobile-view{
-        display: block !important;
-        font-size: 30px;
+        display: flex ;
+        justify-content: flex-end;
+        font-size: 40px;
     }
     .sidenavEnable{
         display: inline !important;
@@ -182,37 +178,23 @@
         justify-content:center; 
         align-items:center
     }
-    // .logo img {
-    //     height: 50px;
-    //     width: 77px;
-    // }
-}
-
-@media (max-width:640px){
     .header-container {
-        height: 57px;
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
         padding: 0 28px;    
         margin-bottom: 27px;
         background-color: white;
         box-shadow: 0px 1px 6px rgba(0,0,0,0.3);
     }
 
-    .logo {
-        width:90px
-    }
-
-    .search{
-        width: 100px;
-    }
-
     .logo img {
         height: 50px;
         width: 77px;
     }
+    // .logo img {
+    //     height: 50px;
+    //     width: 77px;
+    // }
 }
+
 
 .example-container {
   width: 400px;
@@ -263,76 +245,74 @@ p {
 }
 
 
-input {
-	outline: none;
-}
-input[type=search] {
-	-webkit-appearance: textfield;
-	-webkit-box-sizing: content-box;
-	font-family: inherit;
-	font-size: 100%;
-}
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
-	display: none; 
-}
+
+// input[type=search] {
+// 	-webkit-appearance: textfield;
+// 	-webkit-box-sizing: content-box;
+// 	font-family: inherit;
+// 	font-size: 100%;
+// }
+// input::-webkit-search-decoration,
+// input::-webkit-search-cancel-button {
+// 	display: none; 
+// }
 
 
-input[type=search] {
-	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-	border: solid 1px #ccc;
-	padding: 9px 10px 9px 32px;
-	width: 55px;
+// input[type=search] {
+// 	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+// 	border: solid 1px #ccc;
+// 	padding: 9px 10px 9px 32px;
+// 	width: 55px;
 	
-	-webkit-border-radius: 10em;
-	-moz-border-radius: 10em;
-	border-radius: 10em;
+// 	-webkit-border-radius: 10em;
+// 	-moz-border-radius: 10em;
+// 	border-radius: 10em;
 	
-	-webkit-transition: all .5s;
-	-moz-transition: all .5s;
-	transition: all .5s;
-}
-input[type=search]:focus {
-	width: 130px;
-	background-color: #fff;
-	border-color: #66CC75;
+// 	-webkit-transition: all .5s;
+// 	-moz-transition: all .5s;
+// 	transition: all .5s;
+// }
+// input[type=search]:focus {
+// 	width: 130px;
+// 	background-color: #fff;
+// 	border-color: #66CC75;
 	
-	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
+// 	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+// 	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+// 	box-shadow: 0 0 5px rgba(109,207,246,.5);
+// }
 
 
-input:-moz-placeholder {
-	color: #999;
-}
-input::-webkit-input-placeholder {
-	color: #999;
-}
+// input:-moz-placeholder {
+// 	color: #999;
+// }
+// input::-webkit-input-placeholder {
+// 	color: #999;
+// }
 
 /* Demo 2 */
-#demo-2 input[type=search] {
-	width: 15px;
-	padding-left: 15px;
-	color: transparent;
-	cursor: pointer;
-}
-#demo-2 input[type=search]:hover {
-	background-color: #fff;
-}
-#demo-2 input[type=search]:focus {
-	width: 130px;
-	padding-left: 32px;
-	color: #000;
-	background-color: #fff;
-	cursor: auto;
-}
-#demo-2 input:-moz-placeholder {
-	color: transparent;
-}
-#demo-2 input::-webkit-input-placeholder {
-	color: transparent;
-}
+// #demo-2 input[type=search] {
+// 	width: 15px;
+// 	padding-left: 15px;
+// 	color: transparent;
+// 	cursor: pointer;
+// }
+// #demo-2 input[type=search]:hover {
+// 	background-color: #fff;
+// }
+// #demo-2 input[type=search]:focus {
+// 	width: 130px;
+// 	padding-left: 32px;
+// 	color: #000;
+// 	background-color: #fff;
+// 	cursor: auto;
+// }
+// #demo-2 input:-moz-placeholder {
+// 	color: transparent;
+// }
+// #demo-2 input::-webkit-input-placeholder {
+// 	color: transparent;
+// }
 .category-img{
     height: 10px;
     width: 10px;

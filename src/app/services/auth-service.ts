@@ -44,7 +44,7 @@ export class AuthService  {
           this.handleAuthenticate(respData.user.email, respData.user.firstName, respData.token,respData.user.lastName,respData.user.role)
         })
         )
-  }
+  } 
 
   logIn(email: string, password: string) {
     return this.http.post<authReturnData>("https://ayushmaanbhavaa.com/api/login",

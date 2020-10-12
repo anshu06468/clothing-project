@@ -12,19 +12,19 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loadingEnable"></mat-progress-bar>
 <div class="container-fluid header-container">
     <div class="row">
-        <div class="mobile-view dropdown">
+        <div class="mobile-view dropdown col-sm-1 col-1">
             <mat-icon fontSet="material-icons-outlined" (click)="toggelSidenav()">menu</mat-icon>
         </div>
 
 
-        <div class=" col-lg-1 col-md-12 col-sm-12 logo" style="text-align: center;"> 
+        <div class=" col-lg-2 col-md-2 col-sm-2 col-2 logo" > 
             <a [routerLink]="['/home']" style="width: 100px;">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNdlsNa99qfRLAf9DdV6CtyhfQktk7RU88Gvtj_K6u02RbPcd4"
                     height="80px" width="110px">
             </a>
         </div>
 
-        <div class="menu col-lg-6 col-md-7 col-sm-7">
+        <div class="menu col-lg-6 col-md-6 col-sm-7 ">
             <ul class="list">
                 <li class="contain" [mdePopoverTriggerFor]="collections"
                     [mdePopoverArrowOffsetX]="0"  mdePopoverTriggerOn="click" routerLinkActive="active">
@@ -42,17 +42,7 @@
             </ul>
         </div>
 
-        <div class="col-lg-2 col-md-2 col-sm-2 search" style="display: flex;">
-            <ul class="list">
-                <li>
-                    <div id="demo-2">
-                        <input type="search" placeholder="Search">
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu col-lg-3 col-md-3 col-sm-3 justify-content-end">
+        <div class="menu col-lg-4 col-md-4 col-sm-3  justify-content-end">
             <ul class="list">
                 <li class="contain" *ngIf="!isAuthenticated" (click)="openLoginDialog()">
                     <div style="display:flex; flex-direction: column; align-items: center">
@@ -87,7 +77,7 @@
             <button mat-stroked-button color="primary" class="button" (click)="openLoginDialog()">LOGIN</button>
         </div> -->
 
-        <div class="cart-icon mobile-view" *ngIf="isAuthenticated">
+        <div class="cart-icon mobile-view col-sm-9 col-8" *ngIf="isAuthenticated">
             <a [routerLink]="['/myprofile/notifications']">
                 <mat-icon fontSet="material-icons-outlined">notification_important</mat-icon>
             </a>&nbsp; &nbsp;
@@ -96,6 +86,17 @@
             </a>
         </div>
 
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mt-2 mb-2" >
+            <form class="form-inline md-form form-sm mt-0" style="justify-content: center;">
+                <span class="material-icons">
+                    search
+                </span>
+                <input class="form-control form-control-sm ml-3 w-75" type="search" placeholder="Search" aria-label="Search">
+              </form>
+        </div>
     </div>
   </div>
 

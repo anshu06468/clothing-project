@@ -14,11 +14,21 @@ import { MyRewardsComponent } from './myprofile/my-rewards/my-rewards.component'
 import { NotificationsComponent } from './myprofile/notifications/notifications.component';
 import {AuthService } from './services/auth-service';
 import { ProductResolverService } from './products/product-resolver.service';
+import { ForgotPasswordComponent } from './common/forgot-password/forgot-password.component';
+import { ChangepasswordComponent } from './common/changepassword/changepassword.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'reset_password',
+    component : ForgotPasswordComponent
+  },
+  {
+    path: 'reset_password/:token',
+    component : ChangepasswordComponent
   },
   {
     path: 'product/:category',

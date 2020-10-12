@@ -1,14 +1,15 @@
 import { Component, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../../login/login.component';
-import { LoginService } from '../../services/login.service';
 import { User } from '../../interfaces/Ilogin';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MdePopoverTrigger } from '@material-extended/mde';
 import { AuthService } from 'src/app/services/auth-service';
+import { ProductService } from 'src/app/services/product.service';
+import { HomeService } from 'src/app/services/home.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,9 @@ export class HeaderComponent implements OnInit,OnDestroy {
   isAuthenticated=false;
   user:User;
   private userSub:Subscription;
+  private Productsubs:Subscription;
+  private Loadingsubs:Subscription;
+  private HomeSub:Subscription;
 
   
   @ViewChildren(MdePopoverTrigger) trigger: QueryList<MdePopoverTrigger>;
@@ -36,17 +40,21 @@ export class HeaderComponent implements OnInit,OnDestroy {
   }
 
   constructor(public dialog: MatDialog, private router: Router, private loadingService:LoadingService,
-    private authService: AuthService) { }
+    private authService: AuthService,private productService:ProductService,private homeservice:HomeService) { }
 
   
   ngOnInit() {
+    this.Productsubs=this.productService.getAllProducts().subscribe(resp=>{
+      this.productService.category.next(resp);
+    });
+    this.HomeSub=this.homeservice.getBanners().subscribe();
     this.userSub=this.authService.user.subscribe(user=>{
       this.isAuthenticated=!!user;//trick !user?false:true
       this.user=user;
     })
 
     this.authService.autoLogin();
-    this.loadingService.progressEnable.subscribe(next => {
+    this.Loadingsubs=this.loadingService.progressEnable.subscribe(next => {
       this.loadingEnable = next;
     });
   }
@@ -86,5 +94,8 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(){
     this.userSub.unsubscribe();
+    this.Productsubs.unsubscribe();
+    this.Loadingsubs.unsubscribe();
+    this.HomeSub.unsubscribe();
   }
 }
