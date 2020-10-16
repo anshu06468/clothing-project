@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ForgotPasswordService } from 'src/app/services/forgot-password.service';
@@ -12,7 +12,7 @@ import { ForgotPasswordService } from 'src/app/services/forgot-password.service'
 })
 export class ChangepasswordComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute, private fpassService: ForgotPasswordService) { }
+  constructor(private route:ActivatedRoute, private router:Router,private fpassService: ForgotPasswordService) { }
 
   msg:string=null
   token:string;
@@ -50,11 +50,16 @@ export class ChangepasswordComponent implements OnInit {
     })).subscribe(
       res=>{
         this.msg=res.message;
+        setTimeout(()=>{
+          this.router.navigate(["/home"],{relativeTo:this.route})
+        },2000)
       },
       err=>{
         this.msg=err
       }
     );
+
+    this.fPasswordForm.reset();
 
   }
 

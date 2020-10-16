@@ -100,6 +100,7 @@
 .logo{
 
     cursor: pointer;
+    display: flex;
 }
 
 .mobile-view {
@@ -186,8 +187,7 @@
     }
 
     .logo img {
-        height: 50px;
-        width: 77px;
+        width: 80px;
     }
     // .logo img {
     //     height: 50px;

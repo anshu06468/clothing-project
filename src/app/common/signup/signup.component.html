@@ -41,7 +41,7 @@
                 <mat-icon fontSet="material-icons-outlined" class="black-color">email</mat-icon>
             </span>
         </div>
-        <input class="form-control" placeholder="Email" type="email" formControlName="email">
+        <input class="form-control" placeholder="Email" type="email" formControlName="email" title="Enter a Valid email">
     </div>
 
     <div class="input-group form-group-no-border mg-20">
@@ -50,7 +50,7 @@
                 <mat-icon fontSet="material-icons-outlined" class="black-color">vpn_key</mat-icon>
             </span>
         </div>
-        <input class="form-control" placeholder="Password" type="password" formControlName="password">
+        <input class="form-control" placeholder="Password" type="password" formControlName="password" title="Atleast 6 characters">
     </div>
     <div class="input-group form-group-no-border mg-20">
         <div class="input-group-prepend">
@@ -58,7 +58,7 @@
                 <mat-icon fontSet="material-icons-outlined" class="black-color">vpn_key</mat-icon>
             </span>
         </div>
-        <input class="form-control" placeholder="Confirm Password" type="password" formControlName="cpassword">
+        <input class="form-control" placeholder="Confirm Password" type="password" formControlName="cpassword" title="Atleast 6 characters">
     </div>
     <button class="btn btn-block btn-round dark-background white-color" style="margin-top:30px;" (click)='OnSignUp()' [disabled]="!signupForm.valid">Register</button>
     <div class="login">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { ForgotPasswordService } from 'src/app/services/forgot-password.service';
 
@@ -18,9 +19,12 @@ export class ForgotPasswordComponent implements OnInit {
     email: new FormControl('',[Validators.required,Validators.email]),
   });
 
-  constructor(private fpassService:ForgotPasswordService) { }
+  constructor(private fpassService:ForgotPasswordService,private router:Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("userToken")){
+      this.router.navigate(['/home'])
+    }
   }
 
   onSumbit(){
@@ -32,6 +36,9 @@ export class ForgotPasswordComponent implements OnInit {
     })).subscribe(
       resp=>{
         this.msg=resp.message
+        setTimeout(()=>{
+          this.router.navigate(['/home'])
+        },1000)
         // this.isLoading=false
       },
       err=>{

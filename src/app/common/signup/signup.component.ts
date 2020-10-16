@@ -15,8 +15,8 @@ export class SignupComponent implements OnInit {
     Fname: new FormControl('',[Validators.required]),
     Lname: new FormControl('',[Validators.required]),
     email: new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[Validators.required]),
-    cpassword: new FormControl('',[Validators.required])
+    password: new FormControl('',[Validators.required,Validators.minLength(6)]),
+    cpassword: new FormControl('',[Validators.required,Validators.minLength(6)])
   });
   constructor(public dialogRef: MatDialogRef<SignupComponent>, public dialog: MatDialog,private authService:AuthService) { }
 

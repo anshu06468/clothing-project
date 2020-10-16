@@ -16,11 +16,16 @@ import {AuthService } from './services/auth-service';
 import { ProductResolverService } from './products/product-resolver.service';
 import { ForgotPasswordComponent } from './common/forgot-password/forgot-password.component';
 import { ChangepasswordComponent } from './common/changepassword/changepassword.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
   },
   {
     path: 'reset_password',

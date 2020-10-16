@@ -6,6 +6,7 @@ import { User } from 'src/app/interfaces/Ilogin';
 import { SignupComponent } from '../signup/signup.component';
 import { authReturnData, AuthService } from 'src/app/services/auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   user = {} as User;
   loginForm = new FormGroup({
     email: new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[Validators.required])
+    password: new FormControl('',[Validators.required,Validators.minLength(6)])
   });
   btnDisabled:true
   constructor(public dialogRef: MatDialogRef<LoginComponent>, public dialog: MatDialog,
@@ -34,12 +35,15 @@ export class LoginComponent implements OnInit {
     if(!this.loginForm.valid){
       return;
     }
+    this.isLoading=true;
     const email=this.loginForm.value.email;
     const password=this.loginForm.value.password;
     let authObs:Observable<authReturnData>;
     // console.log(form.value);
     authObs=this.authService.logIn(email,password)
-    authObs.subscribe(
+    authObs.pipe(tap(res=>{
+      this.isLoading=false
+    })).subscribe(
       response=>{
         this.onNoClick();
       },

@@ -92,6 +92,10 @@ export class HeaderComponent implements OnInit,OnDestroy {
     this.router.navigate(['product/'+category]);
     }
 
+  search(){
+    this.router.navigate(["/search"],{queryParams:{page:1}});
+  }
+
   ngOnDestroy(){
     this.userSub.unsubscribe();
     this.Productsubs.unsubscribe();

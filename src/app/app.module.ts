@@ -31,7 +31,9 @@ import { MaterialModule } from './material/material.module'
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { LoadingSpinnerComponent } from './common/loading-spinner/loading-spinner.component';
 import { ForgotPasswordComponent } from './common/forgot-password/forgot-password.component';
-import { ChangepasswordComponent } from './common/changepassword/changepassword.component'
+import { ChangepasswordComponent } from './common/changepassword/changepassword.component';
+import { SearchComponent } from './search/search.component';
+import { SearchproductComponent } from './search/searchproduct/searchproduct.component'
 
 const skltnConfig: SkltnConfig = {
   rectRadius: 10,
@@ -62,7 +64,9 @@ const skltnConfig: SkltnConfig = {
     SignupComponent,
     LoadingSpinnerComponent,
     ForgotPasswordComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    SearchComponent,
+    SearchproductComponent
   ],
   imports: [
     NgxImageZoomModule,
