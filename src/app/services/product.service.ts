@@ -11,7 +11,7 @@ export class ProductService {
 
   category = new BehaviorSubject(null);
 
-  api = "https://testshopiy.herokuapp.com";
+  api = "https://ayushmaanbhavaa.com/api";
   constructor(private httpClient: HttpClient,private injector:Injector) { }
 
 

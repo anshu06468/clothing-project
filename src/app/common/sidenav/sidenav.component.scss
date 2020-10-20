@@ -9,9 +9,13 @@
 }
 
 .list li{
-    padding: 10px 0px;
+    // padding: 10px 0px;
     color: black;
     cursor: pointer;
+}
+
+.list li:focus{
+    border:none
 }
 .list .contain:focus {
     outline: none;

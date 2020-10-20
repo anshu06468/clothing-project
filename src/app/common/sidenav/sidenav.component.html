@@ -1,96 +1,173 @@
 <table *ngIf="isAuthenticated">
-        <tr>
-                <td>
-                        <img src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/profile-pic-male_2fd3e8.svg" />
-
-                </td>
-                <td style="padding-left: 15px;">
-                        <span>Hello,</span>
-                        <h3 style="margin: 0">{{user.firstName | uppercase}}</h3>
-                </td>
-                <td>
-                        <mat-icon fontSet="material-icons-outlined">chevron_right</mat-icon>
-                </td>
-        </tr>
+  <tr>
+    <td>
+      <img
+        src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/profile-pic-male_2fd3e8.svg"
+      />
+    </td>
+    <td style="padding-left: 15px">
+      <span>Hello,</span>
+      <h3 style="margin: 0">{{ user.firstName | uppercase }}</h3>
+    </td>
+    <td>
+      <mat-icon fontSet="material-icons-outlined">chevron_right</mat-icon>
+    </td>
+  </tr>
 </table>
-<!-- <div class="login" *ngIf="!isAuthenticated">
-        
-        <button mat-stroked-button color="primary" class="button" (click)="openLoginDialog()">LOGIN</button>
-</div> -->
 
-<ul class="list">
+<!-- <ul class="list"> --
+  <li class="contain" *ngIf="!isAuthenticated">
+    <table>
+      <tr>
+        <td>
+          <mat-icon fontSet="material-icons-outlined">login</mat-icon>
+        </td>
+        <td style="vertical-align: baseline" (click)="openLoginDialog()">
+          <span style="margin-left: 10px">LOGIN</span>
+        </td>
+      </tr>
+    </table>
+    <hr style="border-top: 1px solid black" />
+  </li> -->
 
-        <li class="contain" *ngIf="!isAuthenticated">
-                <table>
-                        <tr>
-                                <td>
-                                        <mat-icon fontSet="material-icons-outlined">login</mat-icon>
-                                </td>
-                                <td style="vertical-align: baseline;" (click)="openLoginDialog()"><span style="margin-left: 10px;">LOGIN</span></td>
-                        </tr>
-                </table>
-                <hr style="border-top: 1px solid black; ">
-        </li>
-        <li class="contain" (click)="toggelSidenav()" [routerLink]="['/home']" routerLinkActive="active">
-                <table>
-                        <tr>
-                                <td>
-                                        <mat-icon fontSet="material-icons-outlined">home</mat-icon>
-                                </td>
-                                <td style="vertical-align: baseline;"><span style="margin-left: 10px;">HOME</span></td>
-                        </tr>
-                </table>
-        </li>
-        <li class="contain" (click)="toggelSidenav()" [routerLink]="['/products']" routerLinkActive="active">
-                <table>
-                        <tr>
-                                <td>
-                                        <mat-icon fontSet="material-icons-outlined">add_to_photos</mat-icon>
-                                </td>
-                                <td style="vertical-align: baseline;"> <span style="margin-left: 10px;">PRODUCTS</span>
-                                </td>
-                        </tr>
-                </table>
-        </li> 
+<!-- <li --
+    class="contain"
+    routerLinkActive="active"
+  >
+    <table>
+      <tr>
+        <td>
+          <mat-icon fontSet="material-icons-outlined">add_to_photos</mat-icon>
+        </td>
+        <td style="vertical-align: baseline">
+          <span style="margin-left: 10px">PRODUCTS</span>
+        </td>
+      </tr>
+    </table>
+  </li>
 </ul>
 <ul class="list" *ngIf="isAuthenticated">
-        <li *ngFor="let item of profileMenu" [routerLink]="[item.link]" routerLinkActive="active"
-                (click)="toggelSidenav()">
-                <table>
-                        <tr>
-                                <td>
-                                        <mat-icon>{{item.icon}}</mat-icon>
-                                </td>
-                                <td style="vertical-align: baseline;">
-                                        <span style="margin-left: 10px;">{{item.title}}</span>
-                                </td>
-                        </tr>
-                </table>
-        </li>
+  <li
+    *ngFor="let item of profileMenu"
+    [routerLink]="[item.link]"
+    routerLinkActive="active"
+    (click)="toggelSidenav()"
+  >
+    <table>
+      <tr>
+        <td>
+          <mat-icon>{{ item.icon }}</mat-icon>
+        </td>
+        <td style="vertical-align: baseline">
+          <span style="margin-left: 10px">{{ item.title }}</span>
+        </td>
+      </tr>
+    </table>
+  </li>
 </ul>
 <ul class="list" *ngIf="isAuthenticated">
-        <li *ngFor="let item of myStuff" [routerLink]="[item.link]" routerLinkActive="active" (click)="toggelSidenav()">
-                <table>
-                        <tr>
-                                <td>
-                                        <mat-icon>{{item.icon}}</mat-icon>
-                                </td>
-                                <td style="vertical-align: baseline;">
-                                        <span style="margin-left: 10px;">{{item.title}}</span>
-                                </td>
-                        </tr>
-                </table>
-        </li>
+  <li
+    *ngFor="let item of myStuff"
+    [routerLink]="[item.link]"
+    routerLinkActive="active"
+    (click)="toggelSidenav()"
+  >
+    <table>
+      <tr>
+        <td>
+          <mat-icon>{{ item.icon }}</mat-icon>
+        </td>
+        <td style="vertical-align: baseline">
+          <span style="margin-left: 10px">{{ item.title }}</span>
+        </td>
+      </tr>
+    </table>
+  </li>
 </ul>
 <div *ngIf="isAuthenticated">
-        <table>
-                <tr (click)="logout()">
-                        <td>
-                                <mat-icon>power_settings_new</mat-icon>
-                        </td>
-                        <td style="vertical-align: baseline;">
-                                <span style="margin-left: 10px;">Logout</span>
-                        </td>
-                </tr>
-        </table>
-</div>
+  <table>
+    <tr (click)="logout()">
+      <td>
+        <mat-icon>power_settings_new</mat-icon>
+      </td>
+      <td style="vertical-align: baseline">
+        <span style="margin-left: 10px">Logout</span>
+      </td>
+    </tr>
+  </table>
+</div> -->
+
+<mat-nav-list>
+  <span *ngIf="!isAuthenticated">
+    <mat-list-item (click)="openLoginDialog()">
+      <mat-icon fontSet="material-icons-outlined">login</mat-icon>
+      <span style="margin-left: 10px">LOGIN</span>
+    </mat-list-item>
+    <mat-list-item
+      class="contain"
+      (click)="toggelSidenav()"
+    >
+      <mat-icon fontSet="material-icons-outlined">home</mat-icon>
+
+      <span style="margin-left: 10px">HOME</span>
+    </mat-list-item>
+  </span>
+  <span *ngIf="isAuthenticated">
+    <ul class="list">
+      <li
+        *ngFor="let item of profileMenu"
+        routerLinkActive="active"
+        (click)="toggelSidenav()"
+      >
+        <mat-list-item>
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span style="margin-left: 10px">{{ item.title }}</span>
+        </mat-list-item>
+      </li>
+    </ul>
+  </span>
+
+  <span  *ngIf="isAuthenticated">
+      <mat-list-item class="list" (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon>
+          <span style="margin-left: 10px">Logout</span>
+      </mat-list-item>
+  </span> 
+
+  <span *ngFor="let item of menu">
+    <span *ngIf="item.children && item.children.length > 0">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <!-- Cabeceras del submenu -->
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>{{ item.iconName }}</mat-icon>
+                {{ item.displayName }}
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span *ngFor="let child of item.children">
+            <mat-list-item routerLink="[child.route]">
+              <!-- Entradas de cada submenú  -->
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>{{ child.iconName }}</mat-icon>
+                {{ child.displayName }}
+              </div>
+            </mat-list-item>
+          </span>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </span>
+    <span *ngIf="!item.children || item.children.length === 0">
+      <mat-list-item routerLink="[item.route]">
+        <!-- Entradas principales -->
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-icon>{{ item.iconName }}</mat-icon>
+          {{ item.displayName }}
+        </div>
+      </mat-list-item>
+    </span>
+  </span>
+  
+</mat-nav-list>

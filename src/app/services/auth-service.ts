@@ -2,20 +2,23 @@ import { Injectable } from '@angular/core';
 import { User } from '../interfaces/Ilogin';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 export interface authReturnData {
   success: boolean,
   token: string,
-  subscribed?:boolean,
+  subscribed?:boolean
+}
+
+export interface returnUser{
   user: {
-      id: string,
-      firstName: string,
-      lastName: string,
-      email: string,
-      role: string
-  }
+    id: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+  },
+  status:boolean
 }
 
 @Injectable({
@@ -40,8 +43,11 @@ export class AuthService  {
       (
         catchError(this.handleError),
         tap(respData => {
+          localStorage.setItem("token",JSON.stringify(respData.token))
           // console.log(respData)
-          this.handleAuthenticate(respData.user.email, respData.user.firstName, respData.token,respData.user.lastName,respData.user.role)
+          this.handleAuthenticate().subscribe(err=>{
+            console.log(err);
+          });
         })
         )
   } 
@@ -55,23 +61,36 @@ export class AuthService  {
       (
         catchError(this.handleError),
         tap(respData => {
-          this.handleAuthenticate(respData.user.email, respData.user.firstName, respData.token,respData.user.lastName,respData.user.role)
+          localStorage.setItem("token",JSON.stringify(respData.token))
+          this.handleAuthenticate().subscribe(res=>{},err=>{
+            console.log(err)
+          });
         })
       )
   }
 
   autoLogin(){
-    const data:User=JSON.parse(localStorage.getItem("userToken"));
-    
-    if(!data){
+    const token:User=JSON.parse(localStorage.getItem("token"));
+    // console.log(token)
+    if(!token){
       return;
     }
 
-    if(data){
-      this.user.next(data);
-      const expirationDuration=new Date(data._tokenExpirationDate).getTime()-new Date().getTime();
-      console.log(expirationDuration)
-      this.autoLogOut(expirationDuration)
+    if(token){
+      // this.user.next(data);
+      // console.log("in")
+      this.handleAuthenticate().subscribe(res=>{
+        let expiration_date:Date
+        this.user.subscribe(data=>{
+          expiration_date=data._tokenExpirationDate;
+        })
+        const expirationDuration=new Date(expiration_date).getTime()-new Date().getTime();
+        console.log(expirationDuration)
+        this.autoLogOut(expirationDuration)
+        },
+        err=>{
+          console.log(err)
+        });
     }
   }
 
@@ -83,34 +102,47 @@ export class AuthService  {
   }
 
   logOut(){
+    localStorage.removeItem("token");
     this.user.next(null);
     this.router.navigate(["/home"]);
-    localStorage.removeItem("userToken");
     if(this.tokenExpirationTimer){
       clearTimeout(this.tokenExpirationTimer)
     }
     this.tokenExpirationTimer=null;
   }
 
-  private handleAuthenticate(email: string, firstName: string, token: string,lastName:string,role:string) {
-    const expirationDate = new Date(new Date().getTime() + 7*24*60*60*1000)
-    const user = new User(
-      firstName,
-      lastName,
-      email,
-      role,
-      token,
-      expirationDate
-    );
-    this.user.next(user);
-    this.autoLogOut(7*24*3600*1000)
 
-    localStorage.setItem("userToken",JSON.stringify(user))
+  private handleAuthenticate() {
+    return this.http.post<returnUser>("https://ayushmaanbhavaa.com/api/tokenVerify",null)
+                .pipe(
+                    catchError(this.handleAuthError),
+                    tap(respData => {
+                      // console.log(respData)
+                      const expirationDate = new Date(new Date().getTime() + 7*24*60*60*1000)
+                      const user = new User(
+                          respData.user.firstName,
+                          respData.user.lastName,
+                          respData.user.email,
+                          expirationDate
+                        );
+                      this.user.next(user);
+                      this.autoLogOut(7*24*3600*1000)
+                    })
+                )
+    }
+
+  private handleAuthError(err :HttpErrorResponse){
+    let errorMessage="Error Occurred"
+    if(!err.error || !err.error.message){
+      return throwError(errorMessage)
+    }
+    else{
+      return throwError(err.error.message);
+    }
   }
 
-
   private handleError(errorRes: HttpErrorResponse) {
-    // console.log(errorRes)
+    // console.log(errorRes.error.message)
     let errorMessage = "An unknown error occurred";
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage)

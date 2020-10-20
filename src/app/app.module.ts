@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SidenavComponent } from './common/sidenav/sidenav.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -34,6 +34,8 @@ import { ForgotPasswordComponent } from './common/forgot-password/forgot-passwor
 import { ChangepasswordComponent } from './common/changepassword/changepassword.component';
 import { SearchComponent } from './search/search.component';
 import { SearchproductComponent } from './search/searchproduct/searchproduct.component'
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AdsComponent } from './common/ads/ads.component';
 
 const skltnConfig: SkltnConfig = {
   rectRadius: 10,
@@ -66,7 +68,8 @@ const skltnConfig: SkltnConfig = {
     ForgotPasswordComponent,
     ChangepasswordComponent,
     SearchComponent,
-    SearchproductComponent
+    SearchproductComponent,
+    AdsComponent
   ],
   imports: [
     NgxImageZoomModule,
@@ -83,7 +86,13 @@ const skltnConfig: SkltnConfig = {
     MdePopoverModule,
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, SignupComponent]
 })

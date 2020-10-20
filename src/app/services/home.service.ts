@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HomeService {
-  api = " https://testshopiy.herokuapp.com";
+  api = " https://ayushmaanbhavaa.com/api";
   bannersImages = new BehaviorSubject(null)
   constructor(private httpClient: HttpClient) { }
   getBanners(): Observable<any> {

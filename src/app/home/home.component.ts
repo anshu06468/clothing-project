@@ -1,9 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {MatIconRegistry} from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { StringifyOptions } from 'querystring';
 import { Subscription } from 'rxjs';
+import { AdsService } from '../services/ads.service';
 import { ProductService } from '../services/product.service';
 
 
@@ -13,6 +11,9 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+  adsArray=[];
+
   carouselOptions = 
   {
     items: 1, 
@@ -30,7 +31,7 @@ data:[];
 default = new Array(4);
 subscription:Subscription
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private router: Router, private productService: ProductService) {
+  constructor(private adservice:AdsService, private router: Router, private productService: ProductService) {
   
     
     // iconRegistry.addSvgIcon(
@@ -39,6 +40,7 @@ subscription:Subscription
   }
 
   ngOnInit() {
+    this.getAds()
     // this.productService.getAllProducts().subscribe(res => {
     //   this.data = res.data;
     //   console.log(res)
@@ -58,6 +60,13 @@ subscription:Subscription
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
+  }
+
+  getAds(){
+    this.adservice.getAds().subscribe(data=>{
+      // console.log(data)
+      this.adsArray=data.data;
+    })
   }
   
 
