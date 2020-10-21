@@ -1,4 +1,4 @@
-<table *ngIf="isAuthenticated">
+<!-- <table *ngIf="isAuthenticated">
   <tr>
     <td>
       <img
@@ -13,7 +13,7 @@
       <mat-icon fontSet="material-icons-outlined">chevron_right</mat-icon>
     </td>
   </tr>
-</table>
+</table> -->
 
 <!-- <ul class="list"> --
   <li class="contain" *ngIf="!isAuthenticated">
@@ -98,6 +98,17 @@
 </div> -->
 
 <mat-nav-list>
+  <span>
+    <mat-list-item class="border-bottom">
+      <!-- <img
+        src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/profile-pic-male_2fd3e8.svg"
+      /> -->
+      <h3>Welcome &nbsp; </h3>
+      <h4 *ngIf="isAuthenticated" style="margin: 0">{{ user.firstName | uppercase }}</h4>
+      <h4 *ngIf="!isAuthenticated" style="margin: 0">Guest</h4>
+      <mat-icon fontSet="material-icons-outlined">chevron_right</mat-icon>
+    </mat-list-item>
+  </span>
   <span *ngIf="!isAuthenticated">
     <mat-list-item (click)="openLoginDialog()">
       <mat-icon fontSet="material-icons-outlined">login</mat-icon>

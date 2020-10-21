@@ -40,7 +40,7 @@ subscription:Subscription
   }
 
   ngOnInit() {
-    this.getAds()
+    // this.getAds()
     // this.productService.getAllProducts().subscribe(res => {
     //   this.data = res.data;
     //   console.log(res)
@@ -62,12 +62,12 @@ subscription:Subscription
     this.subscription.unsubscribe();
   }
 
-  getAds(){
-    this.adservice.getAds().subscribe(data=>{
-      // console.log(data)
-      this.adsArray=data.data;
-    })
-  }
+  // getAds(){
+  //   this.adservice.getAds().subscribe(data=>{
+  //     // console.log(data)
+  //     this.adsArray=data.data;
+  //   })
+  // }
   
 
 } 

@@ -21,4 +21,4 @@
     </div>
 </div>
 </div>
-<app-ads *ngFor="let item of adsArray" [url]="item.imageUrl"></app-ads>
+<app-ads *ngFor="let item of [1,2,3];let i =index" [id]="i+1"></app-ads>

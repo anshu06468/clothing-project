@@ -2,13 +2,13 @@
     background: black;
     color: white;
 }
-.footer .container {
-    margin-top: 40px;
-    padding: 40px 0px 0px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+// .footer .container {
+//     margin-top: 40px;
+//     padding: 40px 0px 0px;
+//     display: flex;
+//     justify-content: space-between;
+//     flex-wrap: wrap;
+// }
 .first {
     flex: 1;
 }
@@ -28,8 +28,15 @@
 }
 .list {
     list-style: none;
-    text-align: center;
     font-size: 12px;
+    padding: 2px !important;
+    text-align: start;
+}
+
+.list li, a>span{
+    // padding: 10px 0px;
+    color: hsla(0,0%,100%,.9);;
+    cursor: pointer;
 }
 
 @media (max-width: 640px) {
